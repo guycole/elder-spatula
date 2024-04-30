@@ -1,0 +1,4 @@
+curl -v http://localhost:8088
+curl -v http://localhost:8088/page2.html
+
+curl -v -i -X POST -H "Content-Type: application/json" -d "{\"key\":\"val\"}" http://localhost:8088/page3
