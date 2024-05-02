@@ -18,8 +18,7 @@
 # https://docs.nginx.com/nginx/admin-guide/web-server/web-server/
 #
 FROM debian:11-slim
-#FROM nginx:1.25.5
-LABEL build_date="2024-04-28"
+LABEL build_date="2024-05-05"
 LABEL description="elder-spatula"
 LABEL maintainer="guycole@gmail.com"
 LABEL org.opencontainers.image.description DESCRIPTION "fresh description"
@@ -28,9 +27,17 @@ RUN apt-get update && apt-get install -y
 RUN apt-get install -y curl nginx iputils-ping net-tools vim
 RUN apt-get install -y python3 python3-virtualenv
 #
-virtualenv -p /usr/bin/python3 venv
-source venv/bin/activate
-pip install Django
+WORKDIR /app
+RUN pip install --upgrade pip
+RUN pip install django gunicorn
+#
+RUN mkdir django
+RUN django-admin startproject spatula django
+#
+#RUN virtualenv -p /usr/bin/python3 venv
+#
+#source venv/bin/activate
+#pip install Django
 
 #
 #COPY nginx.conf /etc/nginx/nginx.conf
