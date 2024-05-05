@@ -1,4 +1,47 @@
 curl -v http://localhost:8088
 curl -v http://localhost:8088/page2.html
 
-curl -v -i -X POST -H "Content-Type: application/json" -d "{\"key\":\"val\"}" http://localhost:8088/page3
+curl -v -i -u admin -H "Content-Type: application/json" http://localhost:8080/demo/simple/
+
+curl -v -i -u admin -H "Content-Type: application/json" -d "{\"key\":\"aaa\", \"value\":\"bbb\"}" http://localhost:8080/demo/simple/
+
+Enter host password for user 'admin':
+*   Trying [::1]:8080...
+* Connected to localhost (::1) port 8080
+* Server auth using Basic with user 'admin'
+> POST /demo/simple/ HTTP/1.1
+> Host: localhost:8080
+> Authorization: Basic YWRtaW46Ynl0ZW1l
+> User-Agent: curl/8.4.0
+> Accept: */*
+> Content-Type: application/json
+> Content-Length: 28
+> 
+< HTTP/1.1 201 Created
+HTTP/1.1 201 Created
+< Server: nginx/1.18.0
+Server: nginx/1.18.0
+< Date: Sun, 05 May 2024 15:20:00 GMT
+Date: Sun, 05 May 2024 15:20:00 GMT
+< Content-Type: application/json
+Content-Type: application/json
+< Content-Length: 27
+Content-Length: 27
+< Connection: keep-alive
+Connection: keep-alive
+< Vary: Accept, Cookie
+Vary: Accept, Cookie
+< Allow: GET, POST, HEAD, OPTIONS
+Allow: GET, POST, HEAD, OPTIONS
+< X-Frame-Options: DENY
+X-Frame-Options: DENY
+< X-Content-Type-Options: nosniff
+X-Content-Type-Options: nosniff
+< Referrer-Policy: same-origin
+Referrer-Policy: same-origin
+< Cross-Origin-Opener-Policy: same-origin
+Cross-Origin-Opener-Policy: same-origin
+
+< 
+* Connection #0 to host localhost left intact
+gsc@boris:198>
