@@ -32,14 +32,17 @@ RUN pip3 install --upgrade pip
 RUN pip3 install django gunicorn
 #
 # django resides in /app/django
-RUN mkdir django
-RUN django-admin startproject spatula django
+#RUN mkdir django
+#RUN django-admin startproject spatula django
+
+COPY django /app/django
+
+# nginx
+COPY src/default.conf /etc/nginx/conf.d/default.conf
+COPY src/index.html /var/www/html/index.html
+COPY src/page2.html /var/www/html/page2.html
 #
-COPY default.conf /etc/nginx/conf.d/default.conf
-COPY index.html /var/www/html/index.html
-COPY page2.html /var/www/html/page2.html
-#
-COPY entrypoint.sh /app/entrypoint.sh
+COPY src/entrypoint.sh /app/entrypoint.sh
 RUN chmod +x entrypoint.sh
 #
 # pod command and args
